@@ -1,1 +1,0 @@
-import{_ as e}from"./Container-D6FbiQqx.js";import{_ as s,c as a,w as r,a as c,b as n}from"./index-BJ7GCT2F.js";const _={};function d(i,o){const t=e;return c(),a(t,null,{default:r(()=>[...o[0]||(o[0]=[n("div",{id:"container_main",class:"box-shadow"},[n("h1",{style:{color:"red"}},"404 Not Found")],-1)])]),_:1})}const f=s(_,[["render",d]]);export{f as default};
