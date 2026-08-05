@@ -1,1 +1,0 @@
-import{_ as n,a as o,f as s,k as t}from"./index-C5f-NBcK.js";const r={},c={id:"container",class:"revert"};function _(e,a){return o(),s("div",c,[t(e.$slots,"default")])}const l=n(r,[["render",_]]);export{l as _};
