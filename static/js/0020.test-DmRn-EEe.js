@@ -1,0 +1,13 @@
+const n=`---
+title: test
+date: 2024-07-13 17:01:08
+permalink: /pages/420dd1/
+categories:
+  - java后端
+  - juc
+tags:
+  -
+---
+
+# test
+`;export{n as default};
