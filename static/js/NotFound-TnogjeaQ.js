@@ -1,0 +1,1 @@
+import{_ as e}from"./Container-Clkf4OLd.js";import{_ as s,a,c as r,w as c,b as n}from"./index-CYXWZkpp.js";const _={};function d(i,o){const t=e;return a(),r(t,null,{default:c(()=>o[0]||(o[0]=[n("div",{id:"container_main",class:"box-shadow"},[n("h1",{style:{color:"red"}},"404 Not Found")],-1)])),_:1})}const f=s(_,[["render",d]]);export{f as default};
