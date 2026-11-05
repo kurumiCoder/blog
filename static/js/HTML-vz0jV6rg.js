@@ -1582,6 +1582,23 @@ h2{
 }
 \`\`\`
 
+## dialog居中
+
+
+
+\`\`\`css
+width: 400px
+height: 400px
+display: flex
+position: absolute
+left: 50%
+top: 50%
+margin-left: -200px
+margin-top: -200px
+\`\`\`
+
+
+
 
 
 
@@ -1804,4 +1821,162 @@ flex 子项
 # gruid
 
 [13分钟彻底弄懂CSS Grid基础布局 / CSS Grid 入门教程_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1w84y1r7X8/?p=1&spm_id_from=pageDriver)
+
+
+
+# BEM架构
+
+[学习Vue3 第十三章（实操组件和认识less sass 和 scoped）_vue3 style less-CSDN博客](https://xiaoman.blog.csdn.net/article/details/122832888)
+
+![image-20261025162000709](HTML.assets/image-20261025162000709.png)
+
+> sass实现
+
+src/bem.scss
+
+\`\`\`scss
+$block-sel: "-" !default;
+$element-sel: "__" !default;
+$modifier-sel: "--" !default;
+$namespace:'xm' !default;
+@mixin bfc {
+    height: 100%;
+    overflow: hidden;
+}
+ 
+//混入
+@mixin b($block) {
+   $B: $namespace + $block-sel + $block; //变量
+   .#{$B}{ //插值语法#{}
+     @content; //内容替换
+   }
+}
+ 
+@mixin flex {
+    display: flex;
+}
+ 
+@mixin e($element) {
+    $selector:&;
+    @at-root {
+        #{$selector + $element-sel + $element} {
+            @content;
+        }
+    }
+}
+ 
+@mixin m($modifier) {
+    $selector:&;
+    @at-root {
+        #{$selector + $modifier-sel + $modifier} {
+            @content;
+        }
+    }
+}
+\`\`\`
+
+vite.config
+
+\`\`\`js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+    plugins: [vue()],
+    css: {
+        preprocessorOptions: {
+            scss: {
+                additionalData: "@import './src/bem.scss';"
+            }
+        }
+    }
+})
+\`\`\`
+
+vue组件写法
+
+\`\`\`vue
+<template>
+    <div class="xm-wraps">
+         <div>
+            <Menu></Menu>
+         </div>
+         <div class="xm-wraps__right">
+            <Header></Header>
+            <Content></Content>
+         </div>
+    </div>
+</template>
+ 
+<script lang="ts" setup>
+import { ref, reactive } from "vue"
+import Menu from './Menu/index.vue'
+import Content from './Content/index.vue'
+import Header from './Header/index.vue'
+<\/script>
+ 
+<style lang="scss" scoped>
+@include b('wraps'){
+    @include bfc;
+    @include flex;
+    @include e(right){
+        flex:1;
+        display: flex;
+        flex-direction: column;
+    }
+}
+</style>
+\`\`\`
+
+> layout
+
+https://www.bilibili.com/video/BV1dS4y1y7vd?t=1298.0&p=15
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 `;export{n as default};

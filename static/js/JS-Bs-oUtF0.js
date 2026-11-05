@@ -1305,4 +1305,43 @@ option && myChart.setOption(option);
 \`\`\`js
 this.list.map((item) => ({ value: item.a, name: item.b }));
 \`\`\`
+
+## 问号
+
+<img src="JS.assets/image-20261025185608059.png" alt="image-20261025185608059" style="zoom:50%;" />
+
+## ||
+
+\`\`\`typescript
+const fn:Array<Function> = this.list[name] || []
+\`\`\`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 `;export{n as default};

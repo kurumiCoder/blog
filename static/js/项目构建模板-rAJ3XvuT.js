@@ -266,7 +266,8 @@ export default defineConfig({
     "vitest.config.*",
     "cypress.config.*",
     "playwright.config.*",
-    "eslint.config.*"
+    "eslint.config.*",
+    "uno.config.*"
   ],
   "compilerOptions": {
     // Most tools use transpilation instead of Node.js's native type-stripping.
@@ -601,6 +602,23 @@ https://unocss.nodejs.cn/integrations/vite
 pnpm add -D unocss @unocss/transformer-variant-group  @unocss/preset-wind3 @unocss/preset-attributify @unocss/transformer-directives @unocss/preset-typography @unocss/preset-icons @unocss/preset-web-fonts
 \`\`\`
 
+> 版本必须保持一致
+
+\`unocss\` 会把内部的 \`@unocss/*\` 依赖锁成**精确版本**。如果 \`unocss\` 是旧版，而后来单独安装的 preset 是新版，pnpm 会同时装两份 \`@unocss/core\`，导致类型不兼容、补全异常。
+
+\`\`\`json
+// package.json：让 unocss 和所有 @unocss/* 版本相同
+"unocss": "66.10.3",
+"@unocss/reset": "66.10.3",
+"@unocss/preset-wind3": "66.10.3"
+\`\`\`
+
+改完执行 \`pnpm install\`，并检查只剩一份 core：
+
+\`\`\`bash
+pnpm list @unocss/core --depth 1
+\`\`\`
+
 > vite
 
 \`\`\`typescript
@@ -623,6 +641,32 @@ export default defineConfig({
   // ...UnoCSS options
 })
 \`\`\`
+
+> 加入 tsconfig，否则没有提示 / 不能 Ctrl+Click
+
+\`uno.config.ts\` 在项目根目录，不在 \`src\` 下，\`tsconfig.app.json\` 不会包含它。需要把它加进 \`tsconfig.node.json\` 的 \`include\`：
+
+\`\`\`json
+"include": [
+  "vite.config.*",
+  "eslint.config.*",
+  "uno.config.*"
+]
+\`\`\`
+
+否则 VS Code 会按“不属于任何项目”的孤立文件处理，类型提示和 Ctrl+Click 跳转都不稳定。
+
+> \`content\` 不能写成数组
+
+v66 的 \`content\` 类型是对象，\`content: []\` 会报 \`TS2559\`。需要时这样写：
+
+\`\`\`ts
+content: {
+  filesystem: ['src/**/*.{vue,ts,tsx,md}'],
+}
+\`\`\`
+
+用 Vite 插件时默认从构建管道提取，通常可以省略 \`content\`。
 
 > 导入main.ts
 

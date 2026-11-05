@@ -1,0 +1,1 @@
+import{_ as n,a as o,j as s,M as t}from"./index-Bgj6vp3k.js";const r={},c={id:"container",class:"revert"};function _(e,a){return o(),s("div",c,[t(e.$slots,"default")])}const l=n(r,[["render",_]]);export{l as _};

@@ -1545,7 +1545,7 @@ type Omit<T, K> = Pick<T, Exclude<keyof T, K>>
 
 ### 25. 泛型工具2
 
-**Record**
+#### Record
 
 泛型工具Record接受两个泛型K,T。K表示创建的新对象需要具有哪些属性，T表示对象属性的类型。
 
@@ -1569,9 +1569,11 @@ type Record<K extends keyof any, T> = {
 // 对象的key只能是symbol string number，keyof any正好获取这三个类型
 \`\`\`
 
-支持嵌套约束。
+支持嵌套约束
 
-**ReturnType<Fn>**
+
+
+#### ReturnType<Fn>
 
 主要适用于函数，能够提取函数所返回的类型。
 
